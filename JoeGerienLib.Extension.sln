@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoeGerienLib.Extension", "JoeGerienLib.Extension\JoeGerienLib.Extension.csproj", "{0EB41882-7CDE-412D-AB5E-25DD5BD8DA0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoeGerienLib.Extension.Test", "JoeGerienLib.Extension.Test\JoeGerienLib.Extension.Test.csproj", "{222D0B27-40A0-4FDC-8B89-8D5868347073}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EB41882-7CDE-412D-AB5E-25DD5BD8DA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB41882-7CDE-412D-AB5E-25DD5BD8DA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB41882-7CDE-412D-AB5E-25DD5BD8DA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB41882-7CDE-412D-AB5E-25DD5BD8DA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222D0B27-40A0-4FDC-8B89-8D5868347073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222D0B27-40A0-4FDC-8B89-8D5868347073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222D0B27-40A0-4FDC-8B89-8D5868347073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222D0B27-40A0-4FDC-8B89-8D5868347073}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
