@@ -2,7 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+
+        <!-- NuGet Package Info -->
+        <PackageId>JoeGerienLib.Extensions</PackageId>
         <Version>1.1.0</Version>
+        <Authors>Joe Gerien (Phongpheera.k)</Authors>
+        <Description>JoeGerienLib.Extensions: A bunch of useful extensions methods for .NET projects.</Description>
+
+        <!-- other settings needed to create NuGet package -->
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
