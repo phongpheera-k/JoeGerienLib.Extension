@@ -46,7 +46,7 @@ Then, you can begin to call various methods from the library,
 such as HasValue, GetValueOrEmpty, or ForEach, applying them 
 to appropriate variables or collections in your code as needed:
 ```csharp
-var numbers = new List<int?> { 1, 2, null, 4 };
+var numbers = [1, 2, null, 4];
 numbers.ForEach(n => {
     if (n.HasValue()) {
         Console.WriteLine(n.GetValueOrEmpty());
