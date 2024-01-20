@@ -155,13 +155,14 @@ result = number.Map(n => n * 2);
 
 --------------------
 
-MyClass? myObject = new MyClass(param1, param2);
-var result = myObject.Map(o => ConverToClassB(o));
-// result = instance of ClassB
+int? number = 5;
+MyClass ConvertToMyClass(int n) => new MyClass(n + 5);
+var result = myObject.Map(o => ConverToMyClass(o));
+// result = instance of MyClass with data from 10
 
 myObject = null;
-result = myObject.Map(o => ConverToClassB(o));
-// result = null (default of ClassB)
+result = myObject.Map(o => ConverToMyClass(o));
+// result = null (default of MyClass)
 ```
 \
 `MapAsync`\
@@ -170,14 +171,14 @@ otherwise returns the default value of the result type.
 
 `Usage Example:`
 ```csharp
-// Assuming `SomeAsyncFunction` is a method that takes an int and returns a Task<int>
+// Assuming `SomeAsyncFunction` is a method that takes an int and returns a Task<MyClass>
 int? number = 5;
 var result = await number.MapAsync(n => SomeAsyncFunction(n)); 
-// result depends on SomeAsyncFunction
+// result depends on SomeAsyncFunction but is of type MyClass
 
 number = null;
 result = await number.MapAsync(n => SomeAsyncFunction(n));
-// result = 0 (default of int)
+// result = null (default of MyClass)
 ```
 \
 `Match`\
