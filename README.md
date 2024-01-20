@@ -82,13 +82,13 @@ if it's `null`.
 `Usage Example:`
 ```csharp
 MyClass? myObject = new MyClass(param1, param2);
-var defaultValue = new MyClass(param3);
+var defaultValue = new MyClass(param3, param4);
 var result = myObject.GetValueOrNew(defaultValue); 
 // result = instance of MyClass with data from param1 and param2
 
 myObject = null;
 result = myObject.GetValueOrNew(defaultValue);
-// result = defaultValue (instance provided as parameter)
+// result = defaultValue (instance provided as param3 and param4)
 ```
 \
 `Map`\
@@ -115,3 +115,226 @@ myObject = null;
 result = myObject.Map(o => ConverToClassB(o));
 // result = null (default of ClassB)
 ```
+\
+`MapAsync`\
+Asynchronously transforms a value if it's not `null`, 
+otherwise returns the default value of the result type.
+
+`Usage Example:`
+```csharp
+// Assuming `SomeAsyncFunction` is a method that takes an int and returns a Task<int>
+int? number = 5;
+var result = await number.MapAsync(n => SomeAsyncFunction(n)); 
+// result depends on SomeAsyncFunction
+
+number = null;
+result = await number.MapAsync(n => SomeAsyncFunction(n));
+// result = 0 (default of int)
+```
+\
+`Match`\
+Executes one of two functions based on the presence or absence of a value.
+
+`Usage Example:`
+```csharp
+int? number = 5;
+var result = number.Match(n => n * 2, 1);
+// result = 10
+
+number = null;
+result = number.Match(n => n * 2, 1);
+// result = 1
+
+--------------------
+int? number = 5;
+var result = number.Match(
+    n => $"Value: {n}",
+    () => "No value"
+); 
+// result = "Value: 5"
+
+number = null;
+result = number.Match(
+    n => $"Value: {n}",
+    () => "No value"
+);
+// result = "No value"
+```
+\
+`MatchAsync`\
+Asynchronously executes one of two functions based on the presence 
+or absence of a value.
+
+`Usage Example:`
+```csharp
+// Assuming `SomeAsyncFunction` and `DefaultValueAsync` are async methods
+int? number = 5;
+var result = await number.MatchAsync(
+    n => SomeAsyncFunction(n),
+    () => DefaultValueAsync()
+); 
+// result depends on SomeAsyncFunction
+
+number = null;
+result = await number.MatchAsync(
+    n => SomeAsyncFunction(n),
+    () => DefaultValueAsync()
+);
+// result depends on DefaultValueAsync
+```
+\
+`Then`\
+Executes one of two actions based on the presence or absence of a value.\
+Different from `Match` in that it doesn't return a value.\
+`Match` use `Func<T,Resut>` but\
+`Then` use `Action<T>`.
+
+`Usage Example:`
+```csharp
+int? number = 5;
+number.Then(
+    n => Console.WriteLine($"Value: {n}"),
+    () => Console.WriteLine("No value")
+); 
+// Outputs: "Value: 5"
+
+number = null;
+number.Then(
+    n => Console.WriteLine($"Value: {n}"),
+    () => Console.WriteLine("No value")
+);
+// Outputs: "No value"
+```
+\
+`ThenAsync`\
+Asynchronously executes one of two actions based on the presence
+or absence of a value.\
+
+`Usage Example:`
+```csharp
+// Assuming `ProcessValueAsync` and `HandleNullAsync` are async methods
+int? number = 5;
+await number.ThenAsync(
+    n => ProcessValueAsync(n),
+    () => HandleNullAsync()
+); 
+// Executes ProcessValueAsync
+
+number = null;
+await number.ThenAsync(
+    n => ProcessValueAsync(n),
+    () => HandleNullAsync()
+);
+// Executes HandleNullAsync
+```
+\
+`Match And Then`\
+The Match and Then methods in your class library serve different 
+purposes and are used in different scenarios, despite both dealing 
+with nullable types. Here's a breakdown of their differences:
+
+`Match Method`\
+`Purpose:` The Match method is used to execute one of two provided 
+functions based on whether the nullable type has a value or not. 
+It's similar to a conditional statement, where you have an action for 
+the "true" case (if the value exists) and another for the "false" case 
+(if the value is null).\
+`Return Type:` It returns a value. The return type is determined by 
+the functions provided to it. Both functions (ifSome and ifNone) 
+must return the same type of result.\
+`Usage Scenario:` Use Match when you need to handle both the presence 
+and absence of a value and each scenario needs to produce a result of 
+the same type. It's particularly useful in functional programming 
+paradigms where you want to transform the input based on its state 
+(existing or non-existing).
+
+`Then Method`\
+`Purpose:` The Then method is used to perform an action if the nullable 
+type has a value. Optionally, it can also perform a different action 
+if the value is null. However, the focus is primarily on the case 
+where the value exists.\
+`Return Type:` It does not produce a new value. Instead, it returns 
+the original input, possibly unchanged. It's used for side effects 
+(like logging or modifying external state) rather than transforming 
+the input.\
+`Usage Scenario:` Use Then when your primary concern is to do something 
+with the existing value, like performing a side effect. 
+The optional handling of the null case is just an additional feature 
+but not the main purpose of Then.
+
+In summary, use `Match` when you need to handle both presence 
+and absence of a value and require a return value from this handling. 
+Use `Then` when you want to perform an action (usually a side effect) 
+when a value exists, and optionally handle the null case 
+without expecting a return value.
+
+
+`IfSome`\
+Executes an action if a value is present.
+
+`Usage Example:`
+```csharp
+int? number = 5;
+number.IfSome(n => Console.WriteLine($"Value: {n}"));
+// Outputs: "Value: 5"
+
+number = null;
+number.IfSome(n => Console.WriteLine($"Value: {n}"));
+// No output
+```
+\
+`IfSomeAsync`\
+Asynchronously executes an action if a value is present.
+
+`Usage Example:`
+```csharp
+// Assuming `ProcessValueAsync` is an async method
+int? number = 5;
+await number.IfSomeAsync(n => ProcessValueAsync(n));
+// Executes ProcessValueAsync
+
+number = null;
+await number.IfSomeAsync(n => ProcessValueAsync(n));
+// No output
+```
+\
+`IfNone`\
+Executes an action if a value is absent.
+
+`Usage Example:`
+```csharp
+int? number = 5;
+number.IfNone(() => Console.WriteLine("No value"));
+// No output
+
+number = null;
+number.IfNone(() => Console.WriteLine("No value"));
+// Outputs: "No value"
+```
+
+`IfNoneAsync`\
+Asynchronously executes an action if a value is absent.
+
+`Usage Example:`
+```csharp
+// Assuming `HandleNullAsync` is an async method
+int? number = 5;
+await number.IfNoneAsync(() => HandleNullAsync());
+// No output
+
+number = null;
+await number.IfNoneAsync(() => HandleNullAsync());
+// Executes HandleNullAsync
+```
+\
+### IEnumerable Extensions
+The `IEnumerableExtension` class offers a set of static methods designed
+to operate on `IEnumerable` collections, providing functionalities like
+checking for value existence, obtaining values with default options,
+and executing actions based on the presence or absence of values.
+
+### Methods
+`HasAny`\
+Checks if an enumerable has any elements.
+
+
