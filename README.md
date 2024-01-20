@@ -13,7 +13,7 @@ developer seeking to write cleaner, more maintainable code.
 ## Installation
 The `JoeGerienLib.Extension` package can be easily installed via 
 the NuGet Package Manager in your project. You can install it using one 
-of the following methods:\
+of the following methods:
 
 1. **Through NuGet Package Manager UI**<br>
 - Open your project in Visual Studio.
@@ -255,9 +255,9 @@ number.Then(
 // Outputs: "No value"
 ```
 \
-`ThenAsync`\
+`ThenAsync`<br>
 Asynchronously executes one of two actions based on the presence
-or absence of a value.\
+or absence of a value.
 
 `Usage Example:`
 ```csharp
@@ -276,36 +276,37 @@ await number.ThenAsync(
 );
 // Executes HandleNullAsync
 ```
-\
+<br>
+
 ***`Match And Then`***
 > The Match and Then methods serve different purposes and are used
 > in different scenarios, despite both dealing with nullable types.
 > Here's a breakdown of their differences:
 >
-> `Match Method`\
+> `Match Method`<br>
 > `Purpose:` The Match method is used to execute one of two provided
 > functions based on whether the nullable type has a value or not.
 > It's similar to a conditional statement, where you have an action for
 > the "true" case (if the value exists) and another for the "false" case
-> (if the value is null).\
+> (if the value is null).<br>
 > `Return Type:` It returns a value. The return type is determined by
 > the functions provided to it. Both functions (ifSome and ifNone)
-> must return the same type of result.\
+> must return the same type of result.<br>
 > `Usage Scenario:` Use Match when you need to handle both the presence
 > and absence of a value and each scenario needs to produce a result of
 > the same type. It's particularly useful in functional programming
 > paradigms where you want to transform the input based on its state
 > (existing or non-existing).
 >
-> `Then Method`\
+> `Then Method`<br>
 > `Purpose:` The Then method is used to perform an action if the nullable
 > type has a value. Optionally, it can also perform a different action
 > if the value is null. However, the focus is primarily on the case
-> where the value exists.\
+> where the value exists.<br>
 > `Return Type:` It does not produce a new value. Instead, it returns
 > the original input, possibly unchanged. It's used for side effects
 > (like logging or modifying external state) rather than transforming
-> the input.\
+> the input.<br>
 > `Usage Scenario:` Use Then when your primary concern is to do something
 > with the existing value, like performing a side effect.
 > The optional handling of the null case is just an additional feature
@@ -318,7 +319,7 @@ await number.ThenAsync(
 > without expecting a return value.
 
 
-`IfSome`\
+`IfSome`<br>
 Executes an action if a value is present.
 
 `Usage Example:`
@@ -332,7 +333,7 @@ number.IfSome(n => Console.WriteLine($"Value: {n}"));
 // No output
 ```
 \
-`IfSomeAsync`\
+`IfSomeAsync`<br>
 Asynchronously executes an action if a value is present.
 
 `Usage Example:`
@@ -347,7 +348,7 @@ await number.IfSomeAsync(n => ProcessValueAsync(n));
 // No output
 ```
 \
-`IfNone`\
+`IfNone`<br>
 Executes an action if a value is absent.
 
 `Usage Example:`
@@ -360,8 +361,8 @@ number = null;
 number.IfNone(() => Console.WriteLine("No value"));
 // Outputs: "No value"
 ```
-
-`IfNoneAsync`\
+\
+`IfNoneAsync`<br>
 Asynchronously executes an action if a value is absent.
 
 `Usage Example:`
@@ -384,7 +385,7 @@ The `IEnumerableExtension` class extends the capabilities of
 for enhanced functionality and usability.
 
 ### Methods
-`ForEach`\
+`ForEach`<br>
 Performs a specified action on each element of the `IEnumerable<T>`.
 This method is similar to the `ForEach` method of `List<T>`, but
 it's available for all `IEnumerable<T>` collections.
@@ -403,8 +404,9 @@ numbers.ForEach(n => Console.WriteLine(n));
 This method is particularly useful for iterating over a collection 
 and applying an action to each element, 
 such as logging, modifying, or processing the items.
+<br>
 
-`IsIn`\
+`IsIn`<br>
 This method is particularly useful for iterating over a collection 
 and applying an action to each element, such as logging, modifying, 
 or processing the items.
