@@ -65,7 +65,7 @@ for value existence, obtaining values with default options, and
 executing actions based on the presence or absence of values.
 
 ### Methods
-`HasValue` \
+##### HasValue
 Checks if a `nullable` object has a value.
 
 `Usage Example:`
@@ -78,8 +78,9 @@ number = null;
 result = number.HasValue();
 // result = false
 ```
-\
-`GetValueOrEmpty (string)` \
+<br>
+
+##### GetValueOrEmpty (string)
 Returns the value of a `nullable string` or an empty string if it's `null`.
 
 `Usage Example:`
@@ -92,8 +93,9 @@ inputString = null;
 result = inputString.GetValueOrEmpty();
 // result = ""
 ```
-\
-`GetValueOrEmpty (IEnumerable<T>)` \
+<br>
+
+##### GetValueOrEmpty (IEnumerable<T>)
 Returns the value of a `nullable IEnumerable<T>` or an empty enumerable 
 if it's `null`.
 
@@ -107,8 +109,9 @@ numbers = null;
 result = numbers.GetValueOrEmpty();
 // result = []
 ```
-\
-`GetValueOrNew (without parameter)`\
+<br>
+
+##### GetValueOrNew (without parameter)
 Returns the value of a `nullable` type or a new instance of that type 
 if it's `null`.
 
@@ -122,8 +125,9 @@ myObject = null;
 result = myObject.GetValueOrNew();
 // result = new instance of MyClass
 ```
-\
-`GetValueOrNew (with parameter)`\
+<br>
+
+##### GetValueOrNew (with parameter)
 Returns the value of a `nullable` type or a specified default value 
 if it's `null`.
 
@@ -138,8 +142,9 @@ myObject = null;
 result = myObject.GetValueOrNew(defaultValue);
 // result = defaultValue (instance provided as param3 and param4)
 ```
-\
-`Map`\
+<br>
+
+##### Map
 Transforms a value if it's not `null`, otherwise returns 
 the default value of the result type.
 
@@ -164,8 +169,9 @@ myObject = null;
 result = myObject.Map(o => ConverToMyClass(o));
 // result = null (default of MyClass)
 ```
-\
-`MapAsync`\
+<br>
+
+##### MapAsync
 Asynchronously transforms a value if it's not `null`, 
 otherwise returns the default value of the result type.
 
@@ -180,8 +186,9 @@ number = null;
 result = await number.MapAsync(n => SomeAsyncFunction(n));
 // result = null (default of MyClass)
 ```
-\
-`Match`\
+<br>
+
+##### Match
 Executes one of two functions based on the presence or absence of a value.
 
 `Usage Example:`
@@ -210,8 +217,9 @@ result = number.Match(
 );
 // result = "No value"
 ```
-\
-`MatchAsync`\
+<br>
+
+##### MatchAsync
 Asynchronously executes one of two functions based on the presence 
 or absence of a value.
 
@@ -232,8 +240,9 @@ result = await number.MatchAsync(
 );
 // result depends on DefaultValueAsync
 ```
-\
-`Then`\
+<br>
+
+##### Then
 Executes one of two actions based on the presence or absence of a value.\
 Different from `Match` in that it doesn't return a value.\
 `Match` use `Func<T,Resut>` but\
@@ -255,8 +264,9 @@ number.Then(
 );
 // Outputs: "No value"
 ```
-\
-`ThenAsync`<br>
+<br>
+
+##### ThenAsync
 Asynchronously executes one of two actions based on the presence
 or absence of a value.
 
@@ -319,8 +329,9 @@ await number.ThenAsync(
 > when a value exists, and optionally handle the null case
 > without expecting a return value.
 
+<br> 
 
-`IfSome`<br>
+##### IfSome
 Executes an action if a value is present.
 
 `Usage Example:`
@@ -333,8 +344,9 @@ number = null;
 number.IfSome(n => Console.WriteLine($"Value: {n}"));
 // No output
 ```
-\
-`IfSomeAsync`<br>
+<br>
+
+##### IfSomeAsync
 Asynchronously executes an action if a value is present.
 
 `Usage Example:`
@@ -348,8 +360,9 @@ number = null;
 await number.IfSomeAsync(n => ProcessValueAsync(n));
 // No output
 ```
-\
-`IfNone`<br>
+<br>
+
+##### IfNone
 Executes an action if a value is absent.
 
 `Usage Example:`
@@ -362,8 +375,9 @@ number = null;
 number.IfNone(() => Console.WriteLine("No value"));
 // Outputs: "No value"
 ```
-\
-`IfNoneAsync`<br>
+<br>
+
+##### IfNoneAsync
 Asynchronously executes an action if a value is absent.
 
 `Usage Example:`
@@ -386,7 +400,7 @@ The `IEnumerableExtension` class extends the capabilities of
 for enhanced functionality and usability.
 
 ### Methods
-`ForEach`<br>
+##### ForEach
 Performs a specified action on each element of the `IEnumerable<T>`.
 This method is similar to the `ForEach` method of `List<T>`, but
 it's available for all `IEnumerable<T>` collections.
@@ -407,7 +421,7 @@ and applying an action to each element,
 such as logging, modifying, or processing the items.
 <br>
 
-`IsIn`<br>
+##### IsIn
 This method is particularly useful for iterating over a collection 
 and applying an action to each element, such as logging, modifying, 
 or processing the items.
