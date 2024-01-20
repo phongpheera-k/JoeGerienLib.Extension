@@ -60,13 +60,13 @@ methods available in `JoeGerienLib.Extension`.
 
 ### Nullable Extensions
 The `NullExtension` class offers a set of static methods designed to 
-operate on nullable types, providing functionalities like checking 
+operate on `nullable` types, providing functionalities like checking 
 for value existence, obtaining values with default options, and 
 executing actions based on the presence or absence of values.
 
 ### Methods
 `HasValue` \
-Checks if a nullable object has a value.
+Checks if a `nullable` object has a value.
 
 `Usage Example:`
 ```csharp
@@ -109,7 +109,7 @@ result = numbers.GetValueOrEmpty();
 ```
 \
 `GetValueOrNew (without parameter)`\
-Returns the value of a nullable type or a new instance of that type 
+Returns the value of a `nullable` type or a new instance of that type 
 if it's `null`.
 
 `Usage Example:`
@@ -124,7 +124,7 @@ result = myObject.GetValueOrNew();
 ```
 \
 `GetValueOrNew (with parameter)`\
-Returns the value of a nullable type or a specified default value 
+Returns the value of a `nullable` type or a specified default value 
 if it's `null`.
 
 `Usage Example:`
@@ -280,12 +280,12 @@ await number.ThenAsync(
 
 ***`Match And Then`***
 > The Match and Then methods serve different purposes and are used
-> in different scenarios, despite both dealing with nullable types.
+> in different scenarios, despite both dealing with `nullable types.
 > Here's a breakdown of their differences:
 >
 > `Match Method`<br>
 > `Purpose:` The Match method is used to execute one of two provided
-> functions based on whether the nullable type has a value or not.
+> functions based on whether the `nullable` type has a value or not.
 > It's similar to a conditional statement, where you have an action for
 > the "true" case (if the value exists) and another for the "false" case
 > (if the value is null).<br>
