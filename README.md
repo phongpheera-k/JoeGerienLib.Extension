@@ -245,7 +245,7 @@ result = await number.MatchAsync(
 ##### Then
 Executes one of two actions based on the presence or absence of a value.\
 Different from `Match` in that it doesn't return a value.\
-`Match` use `Func<T,Resut>` but\
+`Match` use `Func<T,TResult>` but\
 `Then` use `Action<T>`.
 
 `Usage Example:`
