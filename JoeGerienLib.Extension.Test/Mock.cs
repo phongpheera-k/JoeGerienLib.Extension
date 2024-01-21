@@ -1,6 +1,6 @@
 namespace JoeGerienLib.Extension.Test;
 
-public class Mock
+public static class Mock
 {
     public class TestClass
     {

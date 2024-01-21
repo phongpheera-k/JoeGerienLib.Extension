@@ -400,6 +400,25 @@ The `IEnumerableExtension` class extends the capabilities of
 for enhanced functionality and usability.
 
 ### Methods
+##### HasValue
+Checks if an `IEnumerable<T>` collection has any values.
+
+`Usage Example:`
+```csharp
+var numbers = [1, 2, 3, 4, 5];
+var result = numbers.HasValue();
+// result = true
+
+numbers = [];
+result = numbers.HasValue();
+// result = false
+
+numbers = null;
+result = numbers.HasValue();
+// result = false
+```
+<br>
+
 ##### ForEach
 Performs a specified action on each element of the `IEnumerable<T>`.
 This method is similar to the `ForEach` method of `List<T>`, but
@@ -445,6 +464,84 @@ bool result = number.IsIn([1, 2, 3, 4, 5]);
 ```
 This method simplifies the process of checking if an item exists 
 within a collection, making the code more readable and concise.
+<br>
+
+##### WhereHasValue
+Filters a collection, returning only those elements that are not null or
+Filters a collection based on a predicate, returning only those elements 
+that are not null and satisfy the predicate.
+
+`Usage Example:`
+```csharp
+IEnumerable<string?> names = new List<string?> { "Alice", null, "Bob" };
+var filteredNames = names.WhereHasValue();
+// filteredNames contains ["Alice", "Bob"]
+
+IEnumerable<int?> numbers = new List<int?> { 1, null, 3 };
+var evenNumbers = numbers.WhereHasValue(n => n % 2 == 0);
+// evenNumbers is empty as no non-null even numbers exist
+```
+This method is useful for filtering a collection and removing null values
+or elements that don't satisfy a certain condition.
+<br>
+
+##### WhereIsIn
+Filters a collection, returning only those elements that exist in another collection.
+
+`Usage Example:`
+```csharp
+IEnumerable<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+var filteredNumbers = numbers.WhereIsIn([1, 3, 5, 7, 9]);
+// filteredNumbers contains [1, 3, 5]
+```
+This method is useful for filtering a collection and removing elements
+that don't exist in another collection.
+<br>
+
+##### WhereIsNotIn
+Filters a collection, returning only those elements that don't exist 
+in another collection.
+
+`Usage Example:`
+```csharp
+IEnumerable<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+var filteredNumbers = numbers.WhereIsNotIn([1, 3, 5, 7, 9]);
+// filteredNumbers contains [2, 4]
+```
+This method is useful for filtering a collection and removing elements
+that exist in another collection.
+<br>
+
+##### Map
+Transforms a collection by applying a specified function to 
+each non-null element.
+
+`Usage Example:`
+```csharp
+IEnumerable<int?> numbers = new List<int?> { 1, null, 3 };
+var result = numbers.Map(n => n * 2);
+// result contains [2, 6]
+```
+This method is useful for transforming a collection by applying a
+function to each element, but only if the element is not null.
+<br>
+
+##### Match
+Executes one of two functions based on the presence or absence of a value.
+
+`Usage Example:`
+```csharp
+IEnumerable<int?> numbers = new List<int?> { 1, null, 3 };
+var result = numbers.Match(
+    n => n * 2,
+    () => 0
+);
+// result contains [2, 0, 6]
+```
+This method is useful for transforming a collection by applying a
+function to each element, but only if the element is not null.
+<br>
+
 
 
 

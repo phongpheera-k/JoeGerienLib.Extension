@@ -5,7 +5,7 @@
 
         <!-- NuGet Package Info -->
         <PackageId>JoeGerienLib.Extensions</PackageId>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Authors>Joe Gerien (Phongpheera.k)</Authors>
         <Description>JoeGerienLib.Extensions: A bunch of useful extensions methods for .NET projects.</Description>
 
