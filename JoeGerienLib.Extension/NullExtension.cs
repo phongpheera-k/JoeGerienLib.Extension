@@ -42,8 +42,7 @@ public static class NullExtension
 
         return input;
     }
-
-
+    
     public static T? IfSome<T>(this T? input, Action<T> ifSome)
     {
         if (input is not null)
